@@ -10,7 +10,17 @@ const postProduct = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getAllProduct = catchAsync(async (req, res) => {
+  const result = await ProductServices.getAllProductFromDB();
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: 'All Products info retreived successfully',
+    data: result,
+  });
+});
 
 export const ProductControllers = {
   postProduct,
+  getAllProduct,
 };
