@@ -2,11 +2,11 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import { TUserRole } from '../modules/user/user.interface';
 import catchAsync from '../utils/catchAsync';
-import AppError from '../errors/AppError';
 import httpStatus from 'http-status';
 import config from '../config';
-import { UserLoginModel, UserModel } from '../modules/user/user.model';
-import RouteError from '../errors/RouteError';
+import {  UserModel } from '../modules/user/user.model';
+import AppError from '../differentErrorrs/AppError';
+import RouteError from '../differentErrorrs/RouteError';
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -32,13 +32,13 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(httpStatus.NOT_FOUND, 'This user is not found');
     }
 
-    const userLoginData = await UserLoginModel.findOne({
-      userEmail: user.email,
-    });
+    // const userLoginData = await UserLoginModel.findOne({
+    //   userEmail: user.email,
+    // });
 
-    if (!userLoginData || userLoginData.token !== token) {
-      throw new AppError(httpStatus.UNAUTHORIZED, 'Token is invalid');
-    }
+    // if (!userLoginData || userLoginData.token !== token) {
+    //   throw new AppError(httpStatus.UNAUTHORIZED, 'Token is invalid');
+    // }
 
     //check if someone trying to access data with other person's token
     // if((await UserModel.isAuthorizedUserChecker(userEmail)) === false){

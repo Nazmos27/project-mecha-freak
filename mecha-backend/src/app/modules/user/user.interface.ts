@@ -1,4 +1,5 @@
 import { Model } from "mongoose";
+import { USER_ROLE } from "./user.constant";
 
 export type TUser = {
     name : string;
@@ -19,3 +20,5 @@ export interface UserModelInterface extends Model<TUser> {
   
     // isAuthorizedUserChecker(email: string): Promise<boolean>;
   }
+
+  export type TUserRole = keyof typeof USER_ROLE;

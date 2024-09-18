@@ -3,13 +3,14 @@
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import config from '../config';
-import handleCastError from '../errors/handleCastError';
-import handleDuplicateError from '../errors/handleDuplicateError';
-import handleValidationError from '../errors/handleValidationError';
-import handleZodError from '../errors/handleZodError';
 import { TErrorSources } from '../global-interfaces/error.interface';
-import AppError from '../errors/AppError';
-import RouteError from '../errors/RouteError';
+import handleZodError from '../differentErrorrs/handleZodError';
+import handleValidationError from '../differentErrorrs/handleValidationError';
+import handleCastError from '../differentErrorrs/handleCastError';
+import handleDuplicateError from '../differentErrorrs/handleDuplicateError';
+import RouteError from '../differentErrorrs/RouteError';
+import AppError from '../differentErrorrs/AppError';
+
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   //setting default values

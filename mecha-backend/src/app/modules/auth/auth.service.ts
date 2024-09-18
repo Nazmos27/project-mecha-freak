@@ -1,12 +1,10 @@
 import httpStatus from 'http-status';
-import AppError from '../../errors/AppError';
 import { TCredentials } from './auth.interface';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
 import { TUser } from '../user/user.interface';
 import { UserModel } from '../user/user.model';
-import { UserServices } from '../user/user.service';
-import { SharedData } from '../../utils/loginData';
+import AppError from '../../differentErrorrs/AppError';
 
 const signUpUser = async (payload: TUser) => {
   const newUser = await UserModel.create(payload);
@@ -46,15 +44,15 @@ const loginUser = async (payload: TCredentials) => {
     expiresIn: '30d',
   });
 
-  const userLoginData = {
-    userEmail: user?.email,
-    loginAt: new Date(),
-    token: accessToken,
-  };
-  await UserServices.updateLoginInfo(userLoginData);
+//   const userLoginData = {
+//     userEmail: user?.email,
+//     loginAt: new Date(),
+//     token: accessToken,
+//   };
+//   await UserServices.updateLoginInfo(userLoginData);
 
-  const sharedData = SharedData.getInstance();
-  sharedData.setUserLoginData(userLoginData);
+//   const sharedData = SharedData.getInstance();
+//   sharedData.setUserLoginData(userLoginData);
 
   return {
     accessToken,
