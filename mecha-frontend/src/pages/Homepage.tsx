@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+import FeaturedProductCard from "../components/FeaturedProductCard";
 import ServiceCard from "../components/ServiceCard";
 
 const HomePage = () => {
@@ -9,6 +11,12 @@ const HomePage = () => {
         <ServiceCard />
         <ServiceCard />
         <ServiceCard />
+      </div>
+      <div className="flex flex-col mb-10 items-center">
+        <FeaturedProductCard />
+        <Button variant="contained" className="max-w-32">
+          See more
+        </Button>
       </div>
     </div>
   );
